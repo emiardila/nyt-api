@@ -8,6 +8,11 @@ This API provides access to a list of the New York Times best-selling books.
 
 -   Laravel 9 or later
 
+### Variables env
+
+-   NYT_API_URL=https://api.nytimes.com/
+-   NYT_API_KEY=
+
 ### Installation
 
 1.  Clone this repository or download the code.
