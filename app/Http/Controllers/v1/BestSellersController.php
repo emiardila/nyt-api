@@ -31,7 +31,8 @@ class BestSellersController extends Controller
      */
     public function index(BestSellersRequestValidation $request)
     {
-        $validated = $request->validated();         
+        $validated = $request->validated();        
+        
         // Convert comma-separated ISBN string to an array
         $isbnString = $validated['isbn'] ?? '';
         $isbnArray = $isbnString != '' ? implode(';', $isbnString) : [];
@@ -39,10 +40,10 @@ class BestSellersController extends Controller
         $endpoint = $this->api_url.'svc/books/v3/lists/best-sellers/history.json';
         $response = Http::get($endpoint,[
             'api-key' => $this->api_key,
-            'author' => $validated['author'] ?? '', 
+            'author' => $validated['author'] ?? null, 
             'isbn' => $isbnArray,
-            'title' => $validated['title'] ?? '', 
-            'offset' => $validated['offset'] ?? 20
+            'title' => $validated['title'] ?? null, 
+            'offset' => $validated['offset'] ?? null
         ]);
 
         return response()->json($response->body());
